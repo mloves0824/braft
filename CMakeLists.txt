@@ -52,6 +52,9 @@ if(BRPC_WITH_GLOG)
     include_directories(${GLOG_INCLUDE_PATH})
 endif()
 
+#find_path只会在默认路径下查找，如果是自定义路径安装brpc，则需要通过以下命令增加查找路径：
+set(CMAKE_INCLUDE_PATH ${PROJECT_SOURCE_DIR}/../brpc/output/include) 
+set(CMAKE_LIBRARY_PATH ${PROJECT_SOURCE_DIR}/../brpc/output/lib)
 find_path(BRPC_INCLUDE_PATH NAMES brpc/server.h)
 find_library(BRPC_LIB NAMES libbrpc.a brpc)
 if ((NOT BRPC_INCLUDE_PATH) OR (NOT BRPC_LIB))
